@@ -1,0 +1,14 @@
+<div>
+  <p>Date: {{ date }}</p>
+  <p>Time:</p>
+  <input type="text" name="time" [(ngModel)]="time" />
+  <p>Feed:</p>
+  <input type="text" name="feed" [(ngModel)]="feed" />
+  <p>Pee:</p>
+  <button (click)="togglePee()">{{ pee ? "Yes" : "No" }}</button>
+  <p>Poo:</p>
+  <button (click)="togglePoo()">{{ poo ? "Yes" : "No" }}</button>
+</div>
+<div>
+  <button (click)="submit()">Submit</button>
+</div>
