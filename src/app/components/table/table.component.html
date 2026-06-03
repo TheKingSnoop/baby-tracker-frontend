@@ -1,0 +1,15 @@
+<p>Date: {{ todayData?.payload.date }}</p>
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Feed</th>
+    <th>Pee</th>
+    <th>Poo</th>
+  </tr>
+  <tr *ngFor="let item of todayData?.payload.trackerData">
+    <td>{{ item.time }}</td>
+    <td>{{ item.feed }}</td>
+    <td>{{ item.pee }}</td>
+    <td>{{ item.poo }}</td>
+  </tr>
+</table>
