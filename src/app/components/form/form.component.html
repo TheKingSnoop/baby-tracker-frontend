@@ -1,9 +1,28 @@
 <div>
   <p>Date: {{ date }}</p>
-  <p>Time: {{ time }}</p>
+  <p>Time:</p>
   <input type="text" name="time" [(ngModel)]="time" />
-  <p>Feed:</p>
-  <input type="text" name="feed" [(ngModel)]="feed" />
+  <button (click)="getCurrentTime()">Use current time</button>
+<br/>
+  <label for="feed-select">Feed:</label>
+
+<select name="feed" id="feed-select " [(ngModel)]="feed">
+  <option value="">--Please choose an option--</option>
+  <option value="breastFed">Breast Fed</option>
+  <option value="formula">Formula</option>
+</select>
+
+<br/>
+  <label for="amount-select">Amount:</label>
+
+<select name="amount" id="amount-select " [(ngModel)]="amount">
+  <option value="">--Please choose an option--</option>
+  <option value="light">Light</option>
+  <option value="medium">Medium</option>
+  <option value="heavy">Heavy</option>
+  <option value="60ml">60ml</option>
+</select>
+
   <p>Pee:</p>
   <button (click)="togglePee()">{{ pee ? "Yes" : "No" }}</button>
   <p>Poo:</p>

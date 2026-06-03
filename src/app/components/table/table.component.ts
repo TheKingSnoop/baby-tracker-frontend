@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
+import { ApiService } from '../../service/api.service';
 
 interface TrackerItem {
   time: string;
@@ -23,20 +23,14 @@ interface TodayTrackerResponse {
   styleUrl: './table.component.css'
 })
 export class TableComponent {
-  todayData: any;
+  private apiService = inject(ApiService);
+  tableData = this.apiService.tableData;
 
-  constructor(private http: HttpClient) {
-    this.getTableData();
+  constructor() {
+    this.apiService.getTableData();
   }
 
-  getTableData() {
-    this.http.get("https://baby-tracker-3qng.onrender.com/tracker/today").subscribe(
-      (response: any) => {
-        this.todayData = response;
-      },
-      (error) => {
-        console.error("Error fetching data:", error);
-      }
-    );
+  deleteItem(id: string) {
+    this.apiService.deleteItem(id);
   }
 }
