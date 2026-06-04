@@ -2,12 +2,23 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../service/api.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+interface Feed {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-form',
-  imports: [FormsModule],
+  imports: [FormsModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatIconModule, MatButtonModule, MatSlideToggleModule],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css',
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
   private apiService = inject(ApiService);
@@ -18,6 +29,20 @@ export class FormComponent {
   amount: string;
   pee: boolean;
   poo: boolean;
+
+  selectedValue!: string;
+
+  feeds: Feed[] = [
+    { value: 'formula', viewValue: 'Formula' },
+    { value: 'breastFed', viewValue: 'Breast Fed' },
+  ];
+
+  amounts: Feed[] = [
+    { value: 'light', viewValue: 'Light' },
+    { value: 'medium', viewValue: 'Medium' },
+    { value: 'heavy', viewValue: 'Heavy' },
+    { value: '60ml', viewValue: '60ml' },
+  ];
 
   constructor(private http: HttpClient) {
     this.date = this.getCurrentDate();
@@ -50,6 +75,8 @@ export class FormComponent {
   togglePoo() {
     this.poo = !this.poo;
   }
+
+  //select feed type
 
   submit() {
     // Here you can handle the form submission, e.g., send the data to a server or store it locally

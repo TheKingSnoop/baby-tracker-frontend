@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   constructor(private http: HttpClient) {}
   baseUrl = 'https://baby-tracker-3qng.onrender.com';
+  localBaseUrl = 'http://localhost:3000';
 
   tableData = signal<any>(null);
 

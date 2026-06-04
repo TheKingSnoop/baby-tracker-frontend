@@ -1,0 +1,40 @@
+.tracker-form {
+  max-width: 420px;
+  padding: 16px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.time-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.time-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.time-button {
+  flex: 0 0 auto;
+  height: 56px;
+  align-self: stretch;
+  white-space: nowrap;
+}
+
+.submit-row {
+  margin-top: 16px;
+}
+
+.submit-row > button {
+  width: 100%;
+}

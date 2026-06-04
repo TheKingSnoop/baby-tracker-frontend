@@ -1,33 +1,38 @@
-<div>
+<form class="tracker-form">
+  <div class="form-content">
   <p>Date: {{ date }}</p>
-  <p>Time:</p>
-  <input type="text" name="time" [(ngModel)]="time" />
-  <button (click)="getCurrentTime()">Use current time</button>
-<br/>
-  <label for="feed-select">Feed:</label>
+  <div class="full-width time-row">
+    <mat-form-field appearance="fill" class="time-field" >
+    <mat-label>Time</mat-label>
+    <input matInput [(ngModel)]="time" name="time">
+  </mat-form-field>
+  <button mat-stroked-button color="primary" type="button" class="time-button" (click)="getCurrentTime()">
+        <mat-icon>timer</mat-icon>
+        Use current time
+      </button>
+  </div>
+  
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Feed</mat-label>
+    <mat-select [(ngModel)]="feed" name="feed">
+      @for (feed of feeds; track feed) {
+        <mat-option [value]="feed.value">{{feed.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Amount</mat-label>
+    <mat-select [(ngModel)]="amount" name="amount">
+      @for (amount of amounts; track amount) {
+        <mat-option [value]="amount.value">{{amount.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-<select name="feed" id="feed-select " [(ngModel)]="feed">
-  <option value="">--Please choose an option--</option>
-  <option value="breastFed">Breast Fed</option>
-  <option value="formula">Formula</option>
-</select>
-
-<br/>
-  <label for="amount-select">Amount:</label>
-
-<select name="amount" id="amount-select " [(ngModel)]="amount">
-  <option value="">--Please choose an option--</option>
-  <option value="light">Light</option>
-  <option value="medium">Medium</option>
-  <option value="heavy">Heavy</option>
-  <option value="60ml">60ml</option>
-</select>
-
-  <p>Pee:</p>
-  <button (click)="togglePee()">{{ pee ? "Yes" : "No" }}</button>
-  <p>Poo:</p>
-  <button (click)="togglePoo()">{{ poo ? "Yes" : "No" }}</button>
+  <p><mat-slide-toggle labelPosition="before" [(ngModel)]="pee" name="pee">Pee</mat-slide-toggle></p>
+  <p><mat-slide-toggle labelPosition="before" [(ngModel)]="poo" name="poo">Poo</mat-slide-toggle></p>
 </div>
-<div>
-  <button (click)="submit()">Submit</button>
+<div class="submit-row">
+  <button mat-flat-button color="primary" type="button" (click)="submit()">Submit</button>
 </div>
+</form>

@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { ApiService } from '../../service/api.service';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+
 
 interface TrackerItem {
   time: string;
@@ -16,11 +19,20 @@ interface TodayTrackerResponse {
   __v: number;
 }
 
+// export interface TrackerData {
+//   time: string;
+//   feed: string;
+//   amount: string;
+//   pee: boolean;
+//   poo: boolean;
+//   delete: boolean;
+// }
+
 @Component({
   selector: 'app-table',
-  imports: [NgFor],
+  imports: [MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.css'
+  styleUrls: ['./table.component.css']
 })
 export class TableComponent {
   private apiService = inject(ApiService);
@@ -29,6 +41,9 @@ export class TableComponent {
   constructor() {
     this.apiService.getTableData();
   }
+
+  displayedColumns: string[] = ['time', 'feed', 'amount', 'pee', 'poo', 'delete'];
+  dataSource = this.tableData()?.payload?.trackerData || [];
 
   deleteItem(id: string) {
     this.apiService.deleteItem(id);
