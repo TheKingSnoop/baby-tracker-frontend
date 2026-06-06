@@ -1,5 +1,7 @@
 .table-container {
   padding: 16px;
+  max-width: 100vw;
+  overflow-x: auto;
 }
 
 .true-icon {

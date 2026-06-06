@@ -3,6 +3,9 @@ import { ApiService } from '../../service/api.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgIf } from '@angular/common';
+
 interface TrackerItem {
   time: string;
   feed: string;
@@ -30,25 +33,18 @@ interface TodayTrackerResponse {
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButtonModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule, NgIf],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  tableData: any;
+  private apiService = inject(ApiService);
+  tableData = this.apiService.tableData;
 
-  constructor(private apiService: ApiService) {}
-
-  getTableData() {
-    this.apiService.getTableData().subscribe(
-      (response: any) => {
-        this.tableData = response;
-      },
-      (error) => {
-        console.error('Error fetching table data:', error);
-      },
-    );
+  constructor() {
+    this.apiService.getTableData();
   }
+  
 
   displayedColumns: string[] = [
     'time',
@@ -58,17 +54,17 @@ export class TableComponent {
     'poo',
     'delete',
   ];
-  // dataSource = this.tableData()?.payload?.trackerData || []; // is this still needed?
+  dataSource = this.tableData()?.payload?.trackerData || [];
 
   deleteItem(id: string) {
     this.apiService.deleteItem(id);
   }
 
-  refreshTable() {
-    this.getTableData();
-  }
+  // refreshTable() {
+  //   this.getTableData();
+  // }
 
-  ngOnInit() {
-    this.getTableData();
-  }
+  // ngOnInit() {
+  //   this.getTableData();
+  // }
 }

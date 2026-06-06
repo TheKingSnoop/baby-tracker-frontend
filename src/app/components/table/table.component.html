@@ -1,19 +1,27 @@
+<div>
+  <mat-progress-spinner
+    *ngIf="!tableData"
+    mode="indeterminate"
+    diameter="50"
+    color="primary"
+  ></mat-progress-spinner>
+</div>
 <div class="table-container">
   <p>
-    Date: {{ tableData?.payload?.date
-    }}<button
+    Date: {{ tableData()?.payload?.date
+    }}
+    <!-- <button
       mat-icon-button
       color="primary"
       aria-label="Refresh"
-      (click)="refreshTable()"
     >
       <mat-icon>refresh</mat-icon>
-    </button>
+    </button> -->
   </p>
 
   <table
     mat-table
-    [dataSource]="tableData?.payload?.trackerData"
+    [dataSource]="tableData()?.payload?.trackerData"
     class="mat-elevation-z8"
   >
     <!-- Time Column -->

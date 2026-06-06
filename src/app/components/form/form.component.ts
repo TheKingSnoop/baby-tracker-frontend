@@ -85,8 +85,6 @@ export class FormComponent {
     this.poo = !this.poo;
   }
 
-  //select feed type
-
   submit() {
     // Here you can handle the form submission, e.g., send the data to a server or store it locally
     console.log('Form submitted:', {
