@@ -3,6 +3,16 @@
   padding: 16px;
 }
 
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.loading-image {
+  max-width: 120px;
+}
+
 .form-content {
   display: flex;
   flex-direction: column;
@@ -37,4 +47,19 @@
 
 .submit-row > button {
   width: 100%;
+}
+
+.pee-poo-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+p {
+  color: rgb(127, 65, 75);
+}
+
+span {
+  font-weight: lighter;
 }

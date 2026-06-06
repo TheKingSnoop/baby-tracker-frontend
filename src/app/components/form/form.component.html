@@ -1,38 +1,59 @@
 <form class="tracker-form">
   <div class="form-content">
-  <p>Date: {{ date }}</p>
-  <div class="full-width time-row">
-    <mat-form-field appearance="fill" class="time-field" >
-    <mat-label>Time</mat-label>
-    <input matInput [(ngModel)]="time" name="time">
-  </mat-form-field>
-  <button mat-stroked-button color="primary" type="button" class="time-button" (click)="getCurrentTime()">
+    <div class="top-row">
+      <p>
+        Date: <span>{{ date }} (today)</span>
+      </p>
+      <img
+        src="https://demo-bucket-molly.s3.eu-west-2.amazonaws.com/waiting.png"
+        alt="Loading..."
+        class="loading-image"
+      />
+    </div>
+    <div class="full-width time-row">
+      <mat-form-field appearance="fill" class="time-field">
+        <mat-label>Time</mat-label>
+        <input matInput [(ngModel)]="time" name="time" />
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        class="time-button"
+        (click)="getCurrentTime()"
+      >
         <mat-icon>timer</mat-icon>
         Use current time
       </button>
+    </div>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Feed</mat-label>
+      <mat-select [(ngModel)]="feed" name="feed">
+        @for (feed of feeds; track feed) {
+          <mat-option [value]="feed.value">{{ feed.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Amount</mat-label>
+      <mat-select [(ngModel)]="amount" name="amount">
+        @for (amount of amounts; track amount) {
+          <mat-option [value]="amount.value">{{ amount.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <div class="pee-poo-row">
+      <mat-slide-toggle labelPosition="before" [(ngModel)]="pee" name="pee"
+        ><p>Pee</p></mat-slide-toggle
+      >
+      <mat-slide-toggle labelPosition="before" [(ngModel)]="poo" name="poo"
+        ><p>Poo</p></mat-slide-toggle
+      >
+    </div>
   </div>
-  
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Feed</mat-label>
-    <mat-select [(ngModel)]="feed" name="feed">
-      @for (feed of feeds; track feed) {
-        <mat-option [value]="feed.value">{{feed.viewValue}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Amount</mat-label>
-    <mat-select [(ngModel)]="amount" name="amount">
-      @for (amount of amounts; track amount) {
-        <mat-option [value]="amount.value">{{amount.viewValue}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
-  <p><mat-slide-toggle labelPosition="before" [(ngModel)]="pee" name="pee">Pee</mat-slide-toggle></p>
-  <p><mat-slide-toggle labelPosition="before" [(ngModel)]="poo" name="poo">Poo</mat-slide-toggle></p>
-</div>
-<div class="submit-row">
-  <button mat-flat-button color="primary" type="button" (click)="submit()">Submit</button>
-</div>
+  <div class="submit-row">
+    <button mat-flat-button color="primary" type="button" (click)="submit()">
+      Submit
+    </button>
+  </div>
 </form>

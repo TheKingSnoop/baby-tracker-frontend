@@ -1,15 +1,15 @@
-<div>
+<div *ngIf="tableData() === null" class="spinner">
   <mat-progress-spinner
-    *ngIf="!tableData"
+  class="spinner"
     mode="indeterminate"
     diameter="50"
     color="primary"
   ></mat-progress-spinner>
+  <p>Loading data...</p>
 </div>
-<div class="table-container">
+<div class="table-container" *ngIf="tableData() !== null">
   <p>
-    Date: {{ tableData()?.payload?.date
-    }}
+    Entries for: <span>{{ tableData()?.payload?.date }}</span>
     <!-- <button
       mat-icon-button
       color="primary"

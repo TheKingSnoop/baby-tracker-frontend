@@ -54,7 +54,7 @@ export class TableComponent {
     'poo',
     'delete',
   ];
-  dataSource = this.tableData()?.payload?.trackerData || [];
+  dataSource = this.tableData()?.payload?.trackerData;
 
   deleteItem(id: string) {
     this.apiService.deleteItem(id);
