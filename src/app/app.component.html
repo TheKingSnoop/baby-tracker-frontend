@@ -1,3 +1,14 @@
-<app-form />
-<app-table/>
+<div class="loading-container" *ngIf="isLoading; else content">
+  <p>The server is waking up...</p>
+  <mat-spinner diameter="32"></mat-spinner>
+  <img
+    src="https://demo-bucket-molly.s3.eu-west-2.amazonaws.com/waiting.png"
+    alt="Loading..."
+    class="loading-image"
+  />
+</div>
+<ng-template #content>
+  <app-form />
+  <app-table />
+</ng-template>
 <router-outlet />

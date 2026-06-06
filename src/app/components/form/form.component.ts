@@ -5,9 +5,9 @@ import { ApiService } from '../../service/api.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 interface Feed {
   value: string;
@@ -16,7 +16,15 @@ interface Feed {
 
 @Component({
   selector: 'app-form',
-  imports: [FormsModule, MatInputModule, MatSelectModule, MatFormFieldModule, MatIconModule, MatButtonModule, MatSlideToggleModule],
+  imports: [
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+  ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
@@ -33,15 +41,16 @@ export class FormComponent {
   selectedValue!: string;
 
   feeds: Feed[] = [
-    { value: 'formula', viewValue: 'Formula' },
-    { value: 'breastFed', viewValue: 'Breast Fed' },
+    { value: 'Formula', viewValue: 'Formula' },
+    { value: 'Breastfed', viewValue: 'Breastfed' },
   ];
 
   amounts: Feed[] = [
-    { value: 'light', viewValue: 'Light' },
-    { value: 'medium', viewValue: 'Medium' },
-    { value: 'heavy', viewValue: 'Heavy' },
+    { value: 'Light', viewValue: 'Light' },
+    { value: 'Medium', viewValue: 'Medium' },
+    { value: 'Heavy', viewValue: 'Heavy' },
     { value: '60ml', viewValue: '60ml' },
+    { value: '90ml', viewValue: '90ml' },
   ];
 
   constructor(private http: HttpClient) {
@@ -104,6 +113,11 @@ export class FormComponent {
         (response) => {
           console.log('Data submitted successfully:', response);
           this.apiService.getTableData();
+          this.time = '';
+          this.feed = '';
+          this.amount = '';
+          this.pee = false;
+          this.poo = false;
         },
         (error) => {
           console.error('Error submitting data:', error);

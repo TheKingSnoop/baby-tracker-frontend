@@ -11,15 +11,12 @@ export class ApiService {
 
   tableData = signal<any>(null);
 
+  wakeUpServer() {
+    return this.http.get(`${this.baseUrl}/tracker/today`); //new endpoint to be updated in the backend to wake up the server without fetching the table data
+  }
+
   getTableData() {
-    this.http.get(`${this.baseUrl}/tracker/today`).subscribe(
-      (response: any) => {
-        this.tableData.set(response);
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      },
-    );
+    return this.http.get(`${this.baseUrl}/tracker/today`);
   }
 
   deleteItem(id: string) {
