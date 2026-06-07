@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-interface Feed {
+interface value {
   value: string;
   viewValue: string;
 }
@@ -40,12 +40,12 @@ export class FormComponent {
 
   selectedValue!: string;
 
-  feeds: Feed[] = [
+  feeds: value[] = [
     { value: 'Formula', viewValue: 'Formula' },
     { value: 'Breastfed', viewValue: 'Breastfed' },
   ];
 
-  amounts: Feed[] = [
+  amounts: value[] = [
     { value: 'Light', viewValue: 'Light' },
     { value: 'Medium', viewValue: 'Medium' },
     { value: 'Heavy', viewValue: 'Heavy' },
@@ -97,7 +97,7 @@ export class FormComponent {
     });
 
     this.http
-      .post('https://baby-tracker-3qng.onrender.com/tracker/add', {
+      .post(`${this.apiService.baseUrl}/tracker/add`, {
         date: this.date,
         trackerData: {
           time: this.time,

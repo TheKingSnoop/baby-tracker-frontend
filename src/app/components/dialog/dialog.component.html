@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Update Entry</h2>
+<mat-dialog-content>
+  <p>Enter new values for the entry. Leave fields unchanged to keep current values.</p>
+  <div *ngIf="entryData?.payload">
+    <mat-form-field appearance="fill" class="time-field">
+      <mat-label>Time</mat-label>
+      <input matInput [(ngModel)]="entryData.payload.time" name="time" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Feed</mat-label>
+      <mat-select [(ngModel)]="entryData.payload.feed" name="feed">
+        @for (feed of feeds; track feed) {
+          <mat-option [value]="feed.value">{{ feed.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Amount</mat-label>
+      <mat-select [(ngModel)]="entryData.payload.amount" name="amount">
+        @for (amount of amounts; track amount) {
+          <mat-option [value]="amount.value">{{ amount.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <div class="pee-poo-row">
+      <mat-slide-toggle labelPosition="before" [(ngModel)]="entryData.payload.pee" name="pee"
+        ><p>Pee</p></mat-slide-toggle
+      >
+      <mat-slide-toggle labelPosition="before" [(ngModel)]="entryData.payload.poo" name="poo"
+        ><p>Poo</p></mat-slide-toggle
+      >
+    </div>
+  </div>
+  <div *ngIf="!entryData?.payload">
+    <p>Loading entry data...</p>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button color="primary" (click)="updateEntry()">Update</button>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

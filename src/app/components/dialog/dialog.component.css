@@ -1,0 +1,6 @@
+.pee-poo-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-around;
+}

@@ -10,13 +10,6 @@
 <div class="table-container" *ngIf="tableData() !== null">
   <p>
     Entries for: <span>{{ tableData()?.payload?.date }}</span>
-    <!-- <button
-      mat-icon-button
-      color="primary"
-      aria-label="Refresh"
-    >
-      <mat-icon>refresh</mat-icon>
-    </button> -->
   </p>
 
   <table
@@ -75,14 +68,13 @@
           mat-icon-button
           color="warn"
           aria-label="Delete"
-          (click)="deleteItem(element._id)"
+          (click)="$event.stopPropagation(); deleteItem(element._id)"
         >
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="openDialog(row._id, '0ms', '0ms')"></tr>
   </table>
 </div>

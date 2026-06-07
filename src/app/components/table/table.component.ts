@@ -5,8 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 interface TrackerItem {
+  _id: string;
   time: string;
   feed: string;
   amount: string;
@@ -60,11 +63,15 @@ export class TableComponent {
     this.apiService.deleteItem(id);
   }
 
-  // refreshTable() {
-  //   this.getTableData();
-  // }
+//dialog
+readonly dialog = inject(MatDialog);
 
-  // ngOnInit() {
-  //   this.getTableData();
-  // }
+  openDialog(id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: { id },
+    });
+  }
 }

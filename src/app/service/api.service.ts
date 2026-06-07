@@ -15,7 +15,7 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/tracker/today`); //new endpoint to be updated in the backend to wake up the server without fetching the table data
   }
 
- getTableData() {
+  getTableData() {
     this.http.get(`${this.baseUrl}/tracker/today`).subscribe(
       (response: any) => {
         this.tableData.set(response);
@@ -24,6 +24,10 @@ export class ApiService {
         console.error('Error fetching data:', error);
       },
     );
+  }
+
+  getSingleEntry(id: string) {
+    return this.http.get(`${this.baseUrl}/tracker/entry/${id}`);
   }
 
   deleteItem(id: string) {
