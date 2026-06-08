@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { HelperService } from '../../service/helper.service';
 
 interface value {
   value: string;
@@ -29,7 +30,8 @@ interface value {
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  private apiService = inject(ApiService);
+  apiService = inject(ApiService);
+  private helperService = inject(HelperService);
 
   date: string;
   time: string;
@@ -116,9 +118,14 @@ export class FormComponent {
           this.amount = '';
           this.pee = false;
           this.poo = false;
+
+          const message = 'Entry added successfully! 😊';
+          this.helperService.openSnackBar(message);
         },
         (error) => {
           console.error('Error submitting data:', error);
+          const message = 'Failed to add entry. Please try again. 😞';
+          this.helperService.openSnackBar(message);
         },
       );
   }

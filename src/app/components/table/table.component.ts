@@ -7,6 +7,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { HelperService } from '../../service/helper.service';
 
 interface TrackerItem {
   _id: string;
@@ -42,13 +43,15 @@ interface TodayTrackerResponse {
 })
 export class TableComponent {
   private apiService = inject(ApiService);
+  private helperService = inject(HelperService);
+  readonly dialog = inject(MatDialog);
+
   tableData = this.apiService.tableData;
 
   constructor() {
     this.apiService.getTableData();
   }
   
-
   displayedColumns: string[] = [
     'time',
     'feed',
@@ -61,10 +64,9 @@ export class TableComponent {
 
   deleteItem(id: string) {
     this.apiService.deleteItem(id);
+    const message = 'Entry deleted successfully! 🗑️';
+    this.helperService.openSnackBar(message);
   }
-
-//dialog
-readonly dialog = inject(MatDialog);
 
   openDialog(id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DialogComponent, {

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClient } from '@angular/common/http';
+import { HelperService } from '../../service/helper.service';
 
 interface value {
   value: string;
@@ -33,6 +34,7 @@ interface value {
 export class DialogComponent {
   readonly dialogRef = inject(MatDialogRef<DialogComponent>);
   readonly data = inject<{ id: string }>(MAT_DIALOG_DATA);
+  readonly helperService = inject(HelperService);
   private apiService = inject(ApiService);
 
   entryData: any = null;
@@ -74,9 +76,13 @@ export class DialogComponent {
         console.log('Entry updated successfully:', response);
         this.dialogRef.close(true); // Close the dialog and indicate success
         this.apiService.getTableData(); // Refresh the table data after updating the entry
+        const message = 'Entry updated successfully! ✅';
+        this.helperService.openSnackBar(message);
       },
       (error) => {
         console.error('Error updating entry:', error);
+        const message = 'Failed to update entry. Please try again. 😞';
+        this.helperService.openSnackBar(message);
       }
     );
   }

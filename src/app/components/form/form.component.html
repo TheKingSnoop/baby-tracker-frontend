@@ -1,9 +1,15 @@
 <form class="tracker-form">
   <div class="form-content">
     <div class="top-row">
-      <p>
-        Date: <span>{{ date }} (today)</span>
-      </p>
+      <div>
+        <p>
+          Date: <span>{{ date }} (today)</span>
+        </p>
+        <p>
+          Time since last feeding:
+          <span>{{ this.apiService.tableData()?.payload?.timeSinceLastFeeding }}</span>
+        </p>
+      </div>
       <img
         src="https://demo-bucket-molly.s3.eu-west-2.amazonaws.com/patient.png"
         alt="Loading..."
