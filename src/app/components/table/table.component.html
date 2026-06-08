@@ -11,7 +11,7 @@
   <p>
     Entries for: <span>{{ tableData()?.payload?.date }}</span>
   </p>
-
+<p>Time since last feeding: {{tableData()?.payload?.timeSinceLastFeeding}}</p>
   <table
     mat-table
     [dataSource]="tableData()?.payload?.trackerData"

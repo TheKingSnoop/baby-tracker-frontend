@@ -11,7 +11,7 @@
       />
     </div>
     <div class="full-width time-row">
-      <mat-form-field appearance="fill" class="time-field">
+      <mat-form-field appearance="outline" class="time-field">
         <mat-label>Time</mat-label>
         <input matInput [(ngModel)]="time" name="time" />
       </mat-form-field>
@@ -26,7 +26,7 @@
         Use current time
       </button>
     </div>
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Feed</mat-label>
       <mat-select [(ngModel)]="feed" name="feed">
         @for (feed of feeds; track feed) {
@@ -34,7 +34,7 @@
         }
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Amount</mat-label>
       <mat-select [(ngModel)]="amount" name="amount">
         @for (amount of amounts; track amount) {
