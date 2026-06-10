@@ -39,6 +39,7 @@ export class FormComponent {
   amount: string;
   pee: boolean;
   poo: boolean;
+  comment: string;
 
   selectedValue!: string;
 
@@ -62,6 +63,7 @@ export class FormComponent {
     this.amount = '';
     this.pee = false;
     this.poo = false;
+    this.comment = '';
   }
 
   getCurrentDate(): string {
@@ -96,6 +98,7 @@ export class FormComponent {
       amount: this.amount,
       pee: this.pee,
       poo: this.poo,
+      comment: this.comment,
     });
 
     this.http
@@ -107,6 +110,7 @@ export class FormComponent {
           amount: this.amount,
           pee: this.pee,
           poo: this.poo,
+          comment: this.comment,
         },
       })
       .subscribe(
@@ -118,6 +122,7 @@ export class FormComponent {
           this.amount = '';
           this.pee = false;
           this.poo = false;
+          this.comment = '';
 
           const message = 'Entry added successfully! 😊';
           this.helperService.openSnackBar(message);

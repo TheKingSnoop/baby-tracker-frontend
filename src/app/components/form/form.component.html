@@ -56,6 +56,10 @@
         ><p>Poo</p></mat-slide-toggle
       >
     </div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Comment</mat-label>
+      <input matInput [(ngModel)]="comment" name="comment" />
+    </mat-form-field>
   </div>
   <div class="submit-row">
     <button mat-flat-button color="primary" type="button" (click)="submit()">

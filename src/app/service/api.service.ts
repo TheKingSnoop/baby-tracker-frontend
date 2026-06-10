@@ -26,6 +26,17 @@ export class ApiService {
     );
   }
 
+  getTableDataByDate(date: string) {
+    this.http.get(`${this.baseUrl}/tracker/date/${date}`).subscribe(
+      (response: any) => {
+        this.tableData.set(response);
+      },
+      (error) => {
+        console.error('Error fetching data for date:', error);
+      },
+    );
+  }
+
   getSingleEntry(id: string) {
     return this.http.get(`${this.baseUrl}/tracker/entry/${id}`);
   }

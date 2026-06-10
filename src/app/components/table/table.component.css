@@ -4,6 +4,23 @@
   overflow-x: auto;
 }
 
+.date-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.date-picker-field {
+  flex: 1;
+}
+
+.date-button {
+  flex: 0 0 auto;
+  height: 56px;
+  align-self: stretch;
+  white-space: nowrap;
+}
+
 .true-icon {
 	color: #2e7d32;
 }

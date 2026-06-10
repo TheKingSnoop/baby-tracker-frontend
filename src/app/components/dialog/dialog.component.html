@@ -30,6 +30,10 @@
         ><p>Poo</p></mat-slide-toggle
       >
     </div>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Comment</mat-label>
+      <input matInput [(ngModel)]="entryData.payload.comment" name="comment" />
+    </mat-form-field>
   </div>
   <div *ngIf="!entryData?.payload">
     <p>Loading entry data...</p>
