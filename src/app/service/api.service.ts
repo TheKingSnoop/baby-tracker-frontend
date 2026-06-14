@@ -41,6 +41,10 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/tracker/entry/${id}`);
   }
 
+  getWeeklyOverview() {
+    return this.http.get(`${this.baseUrl}/tracker/weekly-overview`);
+  }
+
   deleteItem(id: string) {
     this.http.delete(`${this.baseUrl}/tracker/delete/${id}`).subscribe(
       (response) => {
